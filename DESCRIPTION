@@ -2,9 +2,9 @@ Package: predata
 Title: Predata load data and explore them
 Version: 0.1
 Authors@R: "Guillaume T. Vallet <gtvallet@gmail.com> [aut, cre]"
-Description: A suit of functions to load data from csv files and prepare them.
+Description: A set of functions to load data from csv files and prepare them.
 Depends:
     R (>= 3.1.0),
     plyr
-License: GPL (v3)
+License: CC-BY-NC-SA
 LazyData: true
