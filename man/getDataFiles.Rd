@@ -4,7 +4,7 @@
 \title{Load multiple csv files into a unique data frame}
 \usage{
 getDataFiles(folder, targetCol = NULL, separator = ";", toSkip = 0,
-  rowToRead = -1, subj = TRUE)
+  rowToRead = -1, addSubj = NULL)
 }
 \arguments{
 \item{folder}{A string indicating the relative path of the folder
@@ -16,14 +16,17 @@ should be read. Defaults to all columns.}
 \item{separator}{A string indicating the symbol use to
 differentiate the columns (, ; \t). Defaults to ";".}
 
-\item{toSkip}{A number to indicate how many lines (rows) should be ignored before reading the file.
-Defaults to 0.}
+\item{toSkip}{A number to indicate how many lines (rows) should be
+ignored before reading the file. Defaults to 0.}
 
-\item{rowToRead}{A number to indicate how many lines (rows) should be read from the starting reading line.
-Defaults to all lines.}
+\item{rowToRead}{A number to indicate how many lines (rows) should
+be read from the starting reading line. Defaults to all lines.}
 
-\item{subj}{A boolean index to indicate whether or not file contain a subject identification. If not
-the function will add a subject number to the data frame. Defaults to TRUE (subject identification present)}
+\item{addSubj}{Either a vector of 2 numbers to indicate the first
+and last character index of the csv file name to extract the
+ subject name or a boolean index to TRUE to add a subject number
+ equal to the process order of the file. Defaults to NULL to
+ indicate that a subject identification is present.}
 }
 \value{
 Return a data frame with all data bind by rows.
