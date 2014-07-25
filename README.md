@@ -1,8 +1,9 @@
 # PREDATA
 
 - **Author:** Guillaume T. Vallet, gtvallet@gmail.com, Université de Montréal, CRIUGM
-- **Version:** 0.1
+- **Version:** 0.2
 - **Date:** 2014/05/08
+- **Update:** 2014/07/24 -- Add two functions to compute and format means and standard deviations
 
 *Predata* is R package developed for a personal use to improve data pre-analysis.
 *Predata* offers a set of functions to get and merge csv files (e.g. raw data from an experiment) and compute some descriptive statistics including standard errors correct for within-subject design.
@@ -48,6 +49,10 @@ The options allow to specify if some row should be skipped, how many rows and wh
 
 ### reportSE & reportWithin
 
-These functions compute descriptive statistic as the summary or the describe (``psych package``) functions but they also report the standard error and the confident interval. 
+These functions compute descriptive statistic as the summary or the describe (``psych package``) functions but they also report the standard error and the confident interval.
 The main interest of these functions is to allow to correct the standard errors for the within-subject design.
 *Reportwithin* rely on the *reportSE* function and correct for within-subject design.
+
+### strMeanStd & descTab
+
+These functions allow to compute the mean and the standard deviation of a vector (*strMeanStd*) or of data frame (by group ou not) and format the data as a string: mean (std).
