@@ -10,7 +10,7 @@
 #' @param targetCol A vector of numbers to precise which columns
 #'  should be read. Defaults to all columns.
 #' @param separator A string indicating the symbol use to
-#'  differentiate the columns (, ; \t). Defaults to ";".
+#'  differentiate the columns (, ; \\t). Defaults to ";".
 #' @param toSkip A number to indicate how many lines (rows) should be
 #'  ignored before reading the file. Defaults to 0.
 #' @param rowToRead A number to indicate how many lines (rows) should

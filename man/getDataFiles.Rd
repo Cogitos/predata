@@ -14,7 +14,7 @@ in which are stored the csv files}
 should be read. Defaults to all columns.}
 
 \item{separator}{A string indicating the symbol use to
-differentiate the columns (, ; \t). Defaults to ";".}
+differentiate the columns (, ; \\t). Defaults to ";".}
 
 \item{toSkip}{A number to indicate how many lines (rows) should be
 ignored before reading the file. Defaults to 0.}
