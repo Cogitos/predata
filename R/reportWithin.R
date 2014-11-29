@@ -54,27 +54,18 @@ reportWithin  <- function(data=NULL, wid=NULL, within=NULL,
     }
 
     # Compute the N and mean per condition
-    data.sum <- ddply(data, c(between, within),
-                      .fun = function(df, col) {
-                        c( N    = nrow(na.omit(df)),
-                           mean = mean   (df[,col], na.rm=T)
-                        )
-                      },
-                      dv
-    )
-
-    # Rename the "mean" column    
-    data.sum <- rename(data.sum, c("mean"=dv))
+    dots <- list(interp(~ length(na.omit(var)), var = as.name(dv)),
+                 interp(~ mean(var, na.rm=T), var = as.name(dv)))
+    data.sum = data %>% 
+        group_by_(.dots = c(between,within)) %>%
+        summarise_(.dots = setNames(dots, c("N", dv)))
 
 
     ### NORMALIZE DATA --------------------------------------------------------
     # Compute the mean per subject across the between conditions
-    subjMean <- ddply(data, c(wid, between), 
-                      .fun = function(df, col) {
-                        c( subjMean = mean(df[, col], na.rm=T) )
-                      },
-                      dv
-    )
+    subjMean = data %>%
+        group_by_(.dots = c(wid, between)) %>%
+        summarise_( subjMean = interp(~ mean(var, na.rm=T), var = as.name(dv)))
 
     # Put the subject means with original data
     ndata <- merge(data, subjMean)
@@ -94,6 +85,7 @@ reportWithin  <- function(data=NULL, wid=NULL, within=NULL,
     
     ### CORRECTION OF MOREY (2008) FOR WITHIN DATA STANDARD ERRORS ------------
     # Get the product of the number of conditions of within-S variables
+    ndata.sum = as.data.frame(ndata.sum)
     nWithinGroups    <- prod(vapply(ndata.sum[,within, drop = FALSE], FUN = nlevels,
                                     FUN.VALUE = numeric(1)))
     correctionFactor <- sqrt( nWithinGroups / (nWithinGroups-1) )

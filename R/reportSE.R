@@ -27,18 +27,13 @@
 reportSE <- function(data=NULL, dv, groupvars=NULL, conf.interval=.95){
 
   # Compute the N, mean and the standard deviation (sd) per condition
-  data.sum <- ddply(data, groupvars,
-                 .fun= function(df, col) {
-                   c( N    = nrow(na.omit(df)),
-                      mean = mean   (df[,col], na.rm=T),
-                      sd   = sd     (df[,col], na.rm=T)
-                   )
-                 },
-                 dv
-              )
-  
-  # Rename the "mean" column    
-  data.sum <- rename(data.sum, c("mean"=dv))
+  dots <- list(interp(~ length(na.omit(var)), var = as.name(dv)),
+               interp(~ sd(var, na.rm=T), var = as.name(dv)),
+               interp(~ mean(var, na.rm=T), var = as.name(dv)))
+  data.sum = data %>% 
+              group_by_(.dots = groupvars) %>%
+              summarise_(.dots = setNames(dots, c("N", 'sd', dv)))
+    
   # Calculate standard error of the mean
   data.sum$se <- data.sum$sd / sqrt(data.sum$N)  
   
