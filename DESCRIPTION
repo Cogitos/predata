@@ -5,6 +5,7 @@ Authors@R: "Guillaume T. Vallet <gtvallet@gmail.com> [aut, cre]"
 Description: A set of functions to load data from csv files and prepare them.
 Depends:
     R (>= 3.1.0),
+    lazyeval,
     dplyr
 License: CC-BY-NC-SA
 LazyData: true
