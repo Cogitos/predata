@@ -36,7 +36,11 @@ descTab = function(data, grp=NULL, toname=NULL, transpose=T){
         if( transpose ){ tb_demo=t(tb_demo) }
         return(tb_demo)
     }else{
-        tb_demo = aggregate(data[,names(data)!=grp], by=list(data[,grp]), FUN='strMeanSd')    
+        if( length(grp) > 1 ){
+          tb_demo = aggregate(data[, !(names(data) %in% grp)], by=as.list(data[,grp]), FUN='strMeanSd')      
+        }else{
+          tb_demo = aggregate(data[, !(names(data) %in% grp)], by=list(data[,grp]), FUN='strMeanSd')      
+        }
         if( transpose ){ tb_demo=t(tb_demo) }
         tb_demo = as.data.frame(tb_demo, stringsAsFactors=F)
         if( is.null(toname) ){

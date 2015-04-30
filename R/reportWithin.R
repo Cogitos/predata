@@ -41,6 +41,9 @@ reportWithin  <- function(data=NULL, wid=NULL, within=NULL,
                           between=NULL, dv=NULL, conf.interval=.95){
     
     ### PREPARE THE DATA ------------------------------------------------------
+    # Ensure that data is a data frame
+    data = as.data.frame(data)
+    
     # Ensure that the between and within are factors 
     factorvars <- vapply(data[, c(between, within), drop = FALSE],
                          FUN = is.factor, FUN.VALUE = logical(1))
