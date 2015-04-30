@@ -4,12 +4,12 @@
 #' @author
 #' Guillaume T. Vallet \email{gtvallet@@gmail.com}, Universit\'{e} de Montr\'{e}al (Canada)
 #' 
-#' @param A data frame with only the columns to use to compute the
+#' @param data. A data frame with only the columns to use to compute the
 #'  mean and the standard deviation as well as the column to use to
 #'  compute by group.
-#' @param Optional, the name of the column to use to compute by group.
-#' @param Optional, a vector of names to use for the groups.
-#' @param Optional, a logical index to transpose or not the data frame.
+#' @param grp. Optional, the name of the column to use to compute by group.
+#' @param toname. Optional, a vector of names to use for the groups. Optional argument.
+#' @param transpose. Optional, a logical index to transpose or not the data frame.
 #'  Default to True.
 #' @return Return a data frame by group (if any) with the mean and the
 #'  standard deviation into parentheses.

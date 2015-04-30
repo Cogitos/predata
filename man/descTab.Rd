@@ -8,15 +8,15 @@
 descTab(data, grp = NULL, toname = NULL, transpose = T)
 }
 \arguments{
-\item{A}{data frame with only the columns to use to compute the
+\item{data.}{A data frame with only the columns to use to compute the
 mean and the standard deviation as well as the column to use to
 compute by group.}
 
-\item{Optional,}{the name of the column to use to compute by group.}
+\item{grp.}{Optional, the name of the column to use to compute by group.}
 
-\item{Optional,}{a vector of names to use for the groups.}
+\item{toname.}{Optional, a vector of names to use for the groups. Optional argument.}
 
-\item{Optional,}{a logical index to transpose or not the data frame.
+\item{transpose.}{Optional, a logical index to transpose or not the data frame.
 Default to True.}
 }
 \value{
