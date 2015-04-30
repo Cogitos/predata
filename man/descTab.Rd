@@ -5,7 +5,7 @@
 \title{Compute and Format a data frame into a table suitable for
   publication with mean and standard deviation into parentheses}
 \usage{
-descTab(data, grp = NULL, toname = NULL, transpose = T)
+descTab(data, grp = NULL, toname = NULL)
 }
 \arguments{
 \item{data.}{A data frame with only the columns to use to compute the
@@ -13,11 +13,6 @@ mean and the standard deviation as well as the column to use to
 compute by group.}
 
 \item{grp.}{Optional, the name of the column to use to compute by group.}
-
-\item{toname.}{Optional, a vector of names to use for the groups. Optional argument.}
-
-\item{transpose.}{Optional, a logical index to transpose or not the data frame.
-Default to True.}
 }
 \value{
 Return a data frame by group (if any) with the mean and the
@@ -40,7 +35,7 @@ data = rbind(
          group='elderly'))
  # Compute the mean and standard deviation of their age and
  #   education. Exclude the subject column to run the function.
-descTab(data[,-1], grp='group', toname=c("Young Adults", "Elderly Adults"))
+descTab(data[,-1], grp='group')
 }
 \author{
 Guillaume T. Vallet \email{gtvallet@gmail.com}, Universit\'{e} de Montr\'{e}al (Canada)

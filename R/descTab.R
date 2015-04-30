@@ -8,9 +8,6 @@
 #'  mean and the standard deviation as well as the column to use to
 #'  compute by group.
 #' @param grp. Optional, the name of the column to use to compute by group.
-#' @param toname. Optional, a vector of names to use for the groups. Optional argument.
-#' @param transpose. Optional, a logical index to transpose or not the data frame.
-#'  Default to True.
 #' @return Return a data frame by group (if any) with the mean and the
 #'  standard deviation into parentheses.
 #' @keywords data, descriptive
@@ -28,26 +25,18 @@
 #'          group='elderly'))
 #'  # Compute the mean and standard deviation of their age and 
 #'  #   education. Exclude the subject column to run the function.
-#' descTab(data[,-1], grp='group', toname=c("Young Adults", "Elderly Adults"))
-descTab = function(data, grp=NULL, toname=NULL, transpose=T){
+#' descTab(data[,-1], grp='group')
+descTab = function(data, grp=NULL, toname=NULL){
     if( is.null(grp) ){
-        tb_demo = apply(data, 2, strMeanSd)
-        tb_demo = as.data.frame(tb_demo, stringsAsFactors=F)
-        if( transpose ){ tb_demo=t(tb_demo) }
-        return(tb_demo)
-    }else{
+        tb_demo = apply( data, 2, strMeanSd )
+     }else{
         if( length(grp) > 1 ){
-          tb_demo = aggregate(data[, !(names(data) %in% grp)], by=as.list(data[,grp]), FUN='strMeanSd')      
+          tb_demo = aggregate(data[, !(names(data) %in% grp)], by=as.list(data[,grp]), FUN='strMeanSd') 
+          tb_demo = t(tb_demo) 
         }else{
           tb_demo = aggregate(data[, !(names(data) %in% grp)], by=list(data[,grp]), FUN='strMeanSd')      
         }
-        if( transpose ){ tb_demo=t(tb_demo) }
-        tb_demo = as.data.frame(tb_demo, stringsAsFactors=F)
-        if( is.null(toname) ){
-            names(tb_demo) = tb_demo[1,]
-        }else{
-            names(tb_demo) = toname
-        }
-        return(tb_demo[-1,])
     }
+    tb_demo = as.data.frame(tb_demo, stringsAsFactors=F)
+    return(tb_demo)
 }
