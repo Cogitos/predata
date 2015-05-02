@@ -36,7 +36,6 @@
 #' Cousineau, D. (2005). Confidence intervals in within‐subject designs:A simpler solution to Loftus and Masson’s method. Tutorials in Quantitative Methods for Psychology, 1, 42-45.
 #' 
 #' Morey, R. (2008). Confidence intervals from normalized data: A correction to Cousineau (2005). Tutorial in Quantitative Methods for Psychology, 4(2), 61–64.
-
 reportWithin  <- function(data=NULL, wid=NULL, within=NULL,
                           between=NULL, dv=NULL, conf.interval=.95){
     

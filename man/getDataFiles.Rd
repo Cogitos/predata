@@ -2,7 +2,7 @@
 % Please edit documentation in R/getDataFiles.R
 \name{getDataFiles}
 \alias{getDataFiles}
-\title{Load multiple csv files into a unique data frame}
+\title{Merge multiple data files}
 \usage{
 getDataFiles(folder, targetCol = NULL, separator = ";", toSkip = 0,
   rowToRead = -1, addSubj = NULL)
@@ -33,13 +33,15 @@ and last character index of the csv file name to extract the
 Return a data frame with all data bind by rows.
 }
 \description{
-A function to load all csv files within a given directory and merge data into a unique data frame.
+Load multiple csv files into a unique data frame.
+A function to load all csv files within a given directory
+ and merge data into a unique data frame.
 }
 \examples{
 getDataFiles()
 }
 \author{
-Guillaume T. Vallet \email{gtvallet@gmail.com}, Universit\'{e} de Montr\'{e}al (Canada)
+Guillaume T. Vallet \email{gtvallet@gmail.com}, University of Montreal (Canada)
 }
 \keyword{csv,}
 \keyword{data,}

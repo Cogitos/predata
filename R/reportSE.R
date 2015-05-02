@@ -23,7 +23,6 @@
 #' @export
 #' @examples
 #' reportWithin()
-
 reportSE <- function(data=NULL, dv, groupvars=NULL, conf.interval=.95){
 
   # Compute the N, mean and the standard deviation (sd) per condition

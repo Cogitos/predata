@@ -1,15 +1,17 @@
+#' Format means and standard deviations
+#' 
 #' Very simple function to compute the mean and the standard
 #'  deviation of a vector of numbers and format them as 
 #'  mean (standard deviation). The number of digits to be kept
 #'  could be set for the mean and the standard deviation.
 #' 
 #' @author
-#' Guillaume T. Vallet \email{gtvallet@@gmail.com}, Universit\'{e} de Montr\'{e}al (Canada)
+#' Guillaume T. Vallet \email{gtvallet@@gmail.com}, University of Montreal (Canada)
 #' 
-#' @param A vector of numbers.
-#' @param Optional, the number of digits to use in rounding the mean.
+#' @param x A vector of numbers.
+#' @param dmean Optional, the number of digits to use in rounding the mean.
 #'  Default to 2.
-#' @param Optional, the number of digits to use in rounding the
+#' @param dsd Optional, the number of digits to use in rounding the
 #'  standard deviation. Default to 1.
 #' @return Return a string formatted as mean (standard deviation).
 #' @keywords data, descriptive, mean, std

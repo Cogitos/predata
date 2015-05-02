@@ -2,20 +2,17 @@
 % Please edit documentation in R/strMeanSd.R
 \name{strMeanSd}
 \alias{strMeanSd}
-\title{Very simple function to compute the mean and the standard
- deviation of a vector of numbers and format them as
- mean (standard deviation). The number of digits to be kept
- could be set for the mean and the standard deviation.}
+\title{Format means and standard deviations}
 \usage{
 strMeanSd(x, dmean = 2, dsd = 1)
 }
 \arguments{
-\item{A}{vector of numbers.}
+\item{x}{A vector of numbers.}
 
-\item{Optional,}{the number of digits to use in rounding the mean.
+\item{dmean}{Optional, the number of digits to use in rounding the mean.
 Default to 2.}
 
-\item{Optional,}{the number of digits to use in rounding the
+\item{dsd}{Optional, the number of digits to use in rounding the
 standard deviation. Default to 1.}
 }
 \value{
@@ -32,7 +29,7 @@ age = c(18, 19, 22, 19, 26, 23, 18, 20, 22, 19)
 strMeanSd(age)
 }
 \author{
-Guillaume T. Vallet \email{gtvallet@gmail.com}, Universit\'{e} de Montr\'{e}al (Canada)
+Guillaume T. Vallet \email{gtvallet@gmail.com}, University of Montreal (Canada)
 }
 \keyword{data,}
 \keyword{descriptive,}

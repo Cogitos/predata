@@ -1,9 +1,11 @@
-#' Load multiple csv files into a unique data frame
+#' Merge multiple data files
 #' 
-#' A function to load all csv files within a given directory and merge data into a unique data frame.
-#' 
+#' Load multiple csv files into a unique data frame.
+#' A function to load all csv files within a given directory
+#'  and merge data into a unique data frame.
+#'
 #' @author
-#' Guillaume T. Vallet \email{gtvallet@@gmail.com}, Universit\'{e} de Montr\'{e}al (Canada)
+#' Guillaume T. Vallet \email{gtvallet@@gmail.com}, University of Montreal (Canada)
 #' 
 #' @param folder A string indicating the relative path of the folder 
 #'  in which are stored the csv files
@@ -25,7 +27,6 @@
 #' @export
 #' @examples
 #' getDataFiles()
-
 getDataFiles = function(folder, targetCol=NULL, separator=";",
                         toSkip=0, rowToRead=-1, addSubj=NULL){
   # GTV - 06/12/2012 - v01
