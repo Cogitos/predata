@@ -4,7 +4,7 @@
 \alias{descTab}
 \title{Format Descriptive Table}
 \usage{
-descTab(data, grp = NULL, frq = NULL)
+descTab(data, grp = NULL, frq = NULL, n = T)
 }
 \arguments{
 \item{data}{A data frame with only the columns to use to compute the
@@ -12,6 +12,12 @@ mean and the standard deviation as well as the column to use to
 compute by group.}
 
 \item{grp}{Optional, the name of the column to use to compute by group.}
+
+\item{frq}{Optional, the name of the column to use to compute frequency
+tables, typically for gender. Default to NULL.}
+
+\item{n}{Optional, logical value to compute or not the number of
+observations per group. Default to TRUE.}
 }
 \value{
 Return a data frame by group (if any) with the mean and the

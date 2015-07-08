@@ -10,6 +10,10 @@
 #'  mean and the standard deviation as well as the column to use to
 #'  compute by group.
 #' @param grp Optional, the name of the column to use to compute by group.
+#' @param frq Optional, the name of the column to use to compute frequency
+#'  tables, typically for gender. Default to NULL.
+#' @param n Optional, logical value to compute or not the number of 
+#'  observations per group. Default to TRUE.
 #' @return Return a data frame by group (if any) with the mean and the
 #'  standard deviation into parentheses.
 #' @keywords data, descriptive, summary, table
@@ -38,7 +42,18 @@
 #' # Improve the label of the gender factor    
 #' data$sex = factor(data$sex, labels=c('M','F'))
 #' descTab(data[,-1], grp='group', frq='sex')
-descTab = function(data, grp=NULL, frq=NULL){
+descTab = function(data, grp=NULL, frq=NULL, n=T){
+    # Ensure data is a data frame
+    data = as.data.frame(data)
+    # Compute the number of observations if any
+    if( n ){
+      if( length(grp) > 1 ){
+        tb_n = aggregate(data[,1], by=as.list(data[,grp]), FUN='length')  
+      }else{
+        tb_n = aggregate(data[,1], by=list(data[,grp]), FUN='length')      
+      }
+      names(tb_n) = c(grp, "n")
+    }
     # Compute the frequency tables if any
     if( !is.null(frq) ){
         # Compute the frequency tables for each frq variable
@@ -58,9 +73,10 @@ descTab = function(data, grp=NULL, frq=NULL){
         }else{
           tb_demo = aggregate(data[, !(names(data) %in% grp)], by=list(data[,grp]), FUN='strMeanSd')      
         }
-        names(tb_demo)[1:length(grp)] = grp
+        names(tb_demo) = c(grp, names(data)[-which(names(data) %in% grp)])
      }
     tb_demo = as.data.frame(tb_demo, stringsAsFactors=F)
     if( !is.null(frq) ){ tb_demo = merge(tb_demo, frqtb) }
+    if( n ){ tb_demo = merge(tb_n, tb_demo) }
     return(tb_demo)
 }
