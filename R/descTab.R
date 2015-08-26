@@ -48,11 +48,17 @@ descTab = function(data, grp=NULL, frq=NULL, n=T){
     # Compute the number of observations if any
     if( n ){
       if( length(grp) > 1 ){
-        tb_n = aggregate(data[,1], by=as.list(data[,grp]), FUN='length')  
+        tb_n = aggregate(data[,1], by=as.list(data[, grp]), FUN='length')  
+        names(tb_n) = c(grp, "n")
       }else{
-        tb_n = aggregate(data[,1], by=list(data[,grp]), FUN='length')      
+        if( is.null(grp)  ){
+          tb_n = nrow(data)
+          names(tb_n) = 'n'
+        }else{
+          tb_n = aggregate(data[,1], by=list(data[, grp]), FUN='length')      
+          names(tb_n) = c(grp, "n")
+        }
       }
-      names(tb_n) = c(grp, "n")
     }
     # Compute the frequency tables if any
     if( !is.null(frq) ){
@@ -62,21 +68,24 @@ descTab = function(data, grp=NULL, frq=NULL, n=T){
         # Reduce the list into one data frame
         frqtb = Reduce(merge, frqtb)
         # Remove frq variable from the data frame for the next steps
-        data = data[ , -which(names(data) %in% frq) ]
+        data = data[ , -which(names(data) %in% frq), drop=FALSE ]
     }
     # Compute the mean and sd for all other variables
     if( is.null(grp) ){
-        tb_demo = apply( data, 2, strMeanSd )
+        tbl = apply( data, 2, strMeanSd )
      }else{
         if( length(grp) > 1 ){
-          tb_demo = aggregate(data[, !(names(data) %in% grp)], by=as.list(data[,grp]), FUN='strMeanSd')  
+          tbl = aggregate(data[, !(names(data) %in% grp)], by=as.list(data[,grp]), FUN='strMeanSd')  
         }else{
-          tb_demo = aggregate(data[, !(names(data) %in% grp)], by=list(data[,grp]), FUN='strMeanSd')      
+          tbl = aggregate(data[, !(names(data) %in% grp)], by=list(data[,grp]), FUN='strMeanSd')      
         }
-        names(tb_demo) = c(grp, names(data)[-which(names(data) %in% grp)])
+        names(tbl) = c(grp, names(data)[-which(names(data) %in% grp)])
      }
-    tb_demo = as.data.frame(tb_demo, stringsAsFactors=F)
+    tb_demo = as.data.frame(tbl, stringsAsFactors=F)
     if( !is.null(frq) ){ tb_demo = merge(tb_demo, frqtb) }
     if( n ){ tb_demo = merge(tb_n, tb_demo) }
+    if( is.null(grp) ){
+        names(tb_demo) = c("n", names(tbl), "F/M")
+    }
     return(tb_demo)
 }
