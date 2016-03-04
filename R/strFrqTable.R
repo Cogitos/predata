@@ -49,7 +49,7 @@ strFrqTable = function(dt, target, vars=NULL, sep_symbol="/"){
   if( is.null(vars) ){
     tb = table( dt[,target] )
     tb = paste( tb, collapse=sep_symbol )
-    names(tb) = paste( levels(dt[,target]), collapse=sep_symbol )
+    names(tb) = paste( levels(dt[,target]), collapse=sep_symbol, sep="" )
   }else{
     if( length(vars)==1 ){  
       tb = aggregate( dt[,target], by=list(dt[,vars]), FUN=table )
@@ -57,7 +57,7 @@ strFrqTable = function(dt, target, vars=NULL, sep_symbol="/"){
       tb = aggregate(dt[,target], by=as.list(dt[,vars]), FUN=table)  
     }
     frqtb = apply( tb, 1, function(x) paste(x[-c(1:length(vars))], collapse=sep_symbol, sep="") ) 
-    tb[,length(vars)+1] = frqtb
+    tb[,length(vars)+1] = gsub( " ", "", frqtb)
     names(tb) = c( vars, paste(levels(dt[,target]), collapse=sep_symbol) )
   }
   return( tb )
