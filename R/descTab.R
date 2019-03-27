@@ -85,7 +85,8 @@ descTab = function(data, grp=NULL, frq=NULL, n=T){
     if( !is.null(frq) ){ tb_demo = merge(tb_demo, frqtb) }
     if( n ){ tb_demo = merge(tb_n, tb_demo) }
     if( is.null(grp) ){
-        names(tb_demo) = c("n", names(tbl), "F/M")
+        rownames(tb_demo) = names(data)
+        names(tb_demo) = c("n", "Moy (ET)", "F/M")
     }
     return(tb_demo)
 }
