@@ -9,7 +9,7 @@
 #' 
 #' @param folder A string indicating the relative path of the folder 
 #'  in which are stored the csv files
-#' @param targetCol A vector of numbers to precise which columns
+#' @param targetCol A vector of string (col names) to precise which columns
 #'  should be read. Defaults to all columns.
 #' @param separator A string indicating the symbol use to
 #'  differentiate the columns (, ; \\t). Defaults to ";".
@@ -48,7 +48,7 @@ getDataFiles = function(folder, targetCol=NULL, separator=";",
     if( is.null(targetCol) ){
       temp = file
     }else{
-      temp = file[ , targetCol]
+      temp = select(file, targetCol)
     }
     if( !is.null(addSubj) ){
       if( length(addSubj)==2 ){
