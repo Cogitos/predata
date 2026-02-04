@@ -60,14 +60,14 @@ reportWithin  <- function(data=NULL, wid=NULL, within=NULL,
                  interp(~ mean(var, na.rm=T), var = as.name(dv)))
     data.sum = data %>% 
         group_by_(.dots = c(between,within)) %>%
-        summarise_(.dots = setNames(dots, c("N", dv)))
+        summarise(.dots = setNames(dots, c("N", dv)))
 
 
     ### NORMALIZE DATA --------------------------------------------------------
     # Compute the mean per subject across the between conditions
     subjMean = data %>%
         group_by_(.dots = c(wid, between)) %>%
-        summarise_( subjMean = interp(~ mean(var, na.rm=T), var = as.name(dv)))
+        summarise( subjMean = interp(~ mean(var, na.rm=T), var = as.name(dv)))
 
     # Put the subject means with original data
     ndata <- merge(data, subjMean)
