@@ -30,8 +30,8 @@ reportSE <- function(data=NULL, dv, groupvars=NULL, conf.interval=.95){
                interp(~ sd(var, na.rm=T), var = as.name(dv)),
                interp(~ mean(var, na.rm=T), var = as.name(dv)))
   data.sum = data %>% 
-              group_by_(.dots = groupvars) %>%
-              summarise_(.dots = setNames(dots, c("N", 'sd', dv)))
+              group_by(.dots = groupvars) %>%
+              summarise(.dots = setNames(dots, c("N", 'sd', dv)))
     
   # Calculate standard error of the mean
   data.sum$se <- data.sum$sd / sqrt(data.sum$N)  
